@@ -8,8 +8,10 @@ import android.view.MenuItem;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+
+import static com.playoffstudio.imagesliderexample.R.id.slider;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     String[] imagess = {
             "https://www.w3schools.com/w3images/fjords.jpg",
+            "https://i.ytimg.com/vi/EQ_mYstNGwg/maxresdefault.jpg",
             "https://www.w3schools.com/w3images/fjords.jpg",
-            "https://www.w3schools.com/w3images/fjords.jpg",
-            "https://www.w3schools.com/w3images/fjords.jpg"
+            "https://i.ytimg.com/vi/EQ_mYstNGwg/maxresdefault.jpg"
     };
 
 
@@ -39,26 +41,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mDemoSlider = (SliderLayout)findViewById(R.id.slider);
+        mDemoSlider = (SliderLayout)findViewById(slider);
 
 
         for (int i=0 ; i<=3 ; i++){
+
+
             TextSliderView textSliderView = new TextSliderView(getApplicationContext());
             textSliderView.description(titles[i])
                     .image(imagess[i])
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+                    .setScaleType(DefaultSliderView.ScaleType.Fit);
+
 
             //add your extra information
             mDemoSlider.addSlider(textSliderView);
 
         }
 
-        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Tablet);
+        //mDemoSlider.setCustomIndicator((PagerIndicator) findViewById(R.id.custom_indicator));
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
 
-        
+
+
+
+
     }
 
     @Override
